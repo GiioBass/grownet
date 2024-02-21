@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Log;
 
 class TaskPolicy
 {
@@ -18,7 +19,7 @@ class TaskPolicy
      */
     public function viewAny(User $user)
     {
-        //
+
     }
 
     /**
@@ -30,7 +31,7 @@ class TaskPolicy
      */
     public function view(User $user, Task $task)
     {
-        //
+        return $user->id === $task->user_id;
     }
 
     /**
@@ -53,7 +54,7 @@ class TaskPolicy
      */
     public function update(User $user, Task $task)
     {
-        //
+        return $user->id === $task->user_id;
     }
 
     /**
@@ -65,7 +66,7 @@ class TaskPolicy
      */
     public function delete(User $user, Task $task)
     {
-        //
+        return $user->id === $task->user_id;
     }
 
     /**

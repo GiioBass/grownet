@@ -19,7 +19,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::paginate(10);
+        $tasks = Task::where('user_id', auth()->user()->id)->paginate(10);
 
         return response()->json([
             'success' => true,
@@ -47,10 +47,9 @@ class TaskController extends Controller
     public function store(StoreTaskRequest $request)
     {
         try {
-
             $data = $request->all();
-            Log::debug($data);
             $data['created_at'] = Carbon::now();
+            $data['user_id'] = auth()->user()->id;
             $task = Task::create($data);
             if ($task->exists()) {
                 return response()->json([
@@ -76,6 +75,7 @@ class TaskController extends Controller
     public function show(Task $task)
     {
         try {
+            $this->authorize('view', $task);
             $data = Task::where('id', $task->id)->get();
             return response()->json([
                 'succes' => true,
@@ -113,7 +113,7 @@ class TaskController extends Controller
     public function update(UpdateTaskRequest $request, Task $task)
     {
         try {
-
+            $this->authorize('update', $task);
             $data = $request->all();
 
             $task = Task::where('id', $task->id)->update([
@@ -148,7 +148,7 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         try {
-
+            $this->authorize('delete', $task);
             $task = Task::where('id', $task->id)->delete();
 
             return response()->json([

@@ -18,12 +18,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthController::class, 'login']);
 
-/* Route::post('/tokens/create', function (Request $request) {
-    $token = $request->user()->createToken($request->token_name);
-
-    return ['token' => $token->plainTextToken];
-}); */
-
 Route::middleware('auth:sanctum')->group( function () {
     Route::prefix('v1')->group(function(){
         Route::resource('tasks', TaskController::class);

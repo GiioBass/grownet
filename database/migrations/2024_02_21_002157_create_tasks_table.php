@@ -19,6 +19,7 @@ class CreateTasksTable extends Migration
             $table->String('description');
             $table->date('due_date');
             $table->boolean('status')->default(0);
+            $table->foreignId('user_id')->constrained();
             $table->softDeletes();
             $table->timestamps();
         });
