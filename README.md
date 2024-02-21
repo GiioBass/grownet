@@ -161,16 +161,7 @@ Delete
     URL: http://127.0.0.1:8000/api/v1/tasks/20
     Description: Delete a task.
     Authentication: Bearer token required.
-    Body:
-
-    json
-
-    {
-        "title": "test edit",
-        "description": "Test description edit .",
-        "due_date": "1990-09-15",
-        "status": 1
-    }
+    
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
