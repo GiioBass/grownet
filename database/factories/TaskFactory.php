@@ -15,12 +15,12 @@ class TaskFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->word,
-            'description' => $this->faker->sentence,
-            'due_date' => $this->faker->dateTime,
+            'title' => $this->faker->sentence,
+            'description' => $this->faker->sentence(5),
+            'due_date' => $this->faker->date,
             'status' => $this->faker->boolean,
             'user_id' => User::first()->pluck('id')->first(),
-            'created_at' => $this->faker->dateTime
+            'created_at' => $this->faker->date
         ];
     }
 }
